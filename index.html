@@ -140,8 +140,8 @@
     .login-visual .display { font-size: clamp(44px, 6vw, 76px); }
     .login-visual .lead { color: #cccccc; max-width: 560px; }
     .login-product {
-      width: min(78%, 520px); align-self: center; margin-top: 52px;
-      filter: drop-shadow(3px 5px 30px rgba(0,0,0,.22));
+      width: min(82%, 560px); height: 300px; align-self: center; margin-top: 52px;
+      object-fit: cover; border-radius: 24px; filter: drop-shadow(3px 5px 30px rgba(0,0,0,.32));
     }
     .login-note { color: #a1a1a6; font-size: 12px; }
     .login-panel { display: grid; place-items: center; padding: 48px; }
@@ -171,7 +171,7 @@
     .hero__copy-inner { max-width: 590px; }
     .hero__actions { margin-top: 30px; display: flex; gap: 12px; flex-wrap: wrap; }
     .hero__art { align-self: stretch; display: grid; place-items: center; padding: 48px 36px 72px; }
-    .hero__art svg { width: min(100%, 620px); filter: drop-shadow(3px 5px 30px rgba(0,0,0,.22)); }
+    .hero__art img { width: min(100%, 680px); height: min(68vh, 560px); object-fit: cover; border-radius: 28px; filter: drop-shadow(3px 5px 30px rgba(0,0,0,.18)); }
     .trust-row { background: var(--white); padding: 25px 0; border-bottom: 1px solid var(--hairline); }
     .trust-row__inner { display: grid; grid-template-columns: repeat(3, 1fr); }
     .trust-item { display: flex; justify-content: center; align-items: center; gap: 12px; padding: 8px 24px; text-align: left; }
@@ -191,7 +191,7 @@
     .category-card:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
     .category-card h3 { margin: 0; font-size: 24px; line-height: 1.15; font-weight: 600; letter-spacing: -.02em; }
     .category-card p { margin: 8px 0 0; color: var(--muted); font-size: 14px; }
-    .category-card svg.product-art { width: 78%; height: 190px; align-self: center; margin: auto 0 2px; filter: drop-shadow(3px 5px 22px rgba(0,0,0,.18)); }
+    .category-card .product-media { width: 100%; height: 190px; align-self: center; margin: auto 0 2px; }
     .category-card__arrow { color: var(--blue); font-size: 20px; transition: transform .18s ease; }
     .dark-feature {
       min-height: 590px; background: var(--dark); color: var(--white); padding: 80px 24px;
@@ -236,7 +236,11 @@
       display: flex; flex-direction: column;
     }
     .product-card__visual { height: 250px; background: var(--parchment); display: grid; place-items: center; padding: 28px; }
-    .product-card__visual svg { width: 82%; height: 100%; filter: drop-shadow(3px 5px 24px rgba(0,0,0,.2)); }
+    .product-card__visual .product-media { width: 100%; height: 100%; }
+    .product-media { position: relative; display: grid; place-items: center; overflow: hidden; }
+    .product-media .product-art { position: absolute; width: 78%; height: 78%; filter: drop-shadow(3px 5px 24px rgba(0,0,0,.2)); }
+    .product-photo { position: relative; z-index: 1; width: 100%; height: 100%; object-fit: cover; }
+    .product-card__visual .product-photo, .category-card .product-photo { border-radius: 12px; }
     .product-card__body { padding: 24px; display: flex; flex-direction: column; flex: 1; }
     .product-card__tag { margin: 0 0 5px; color: var(--muted); font-size: 12px; }
     .product-card h3 { margin: 0; font-size: 21px; line-height: 1.2; font-weight: 600; letter-spacing: -.02em; }
@@ -258,7 +262,8 @@
       min-height: 560px; background: var(--parchment); display: grid; place-items: center;
       position: sticky; top: 130px; padding: 48px;
     }
-    .purchase-visual svg { width: 88%; max-height: 430px; filter: drop-shadow(3px 5px 30px rgba(0,0,0,.22)); }
+    .purchase-visual .product-media { width: 100%; height: 464px; }
+    .purchase-visual .product-photo { border-radius: 18px; }
     .purchase-info h1 { margin: 4px 0 10px; font-size: clamp(36px, 5vw, 52px); line-height: 1.05; letter-spacing: -.035em; }
     .purchase-info__lead { color: var(--muted); font-size: 21px; margin: 0 0 26px; }
     .purchase-price { padding: 20px 0; border-block: 1px solid var(--hairline); font-size: 28px; font-weight: 600; }
@@ -304,7 +309,8 @@
     .cart-list { margin: 28px 0; overflow: auto; }
     .cart-item { display: grid; grid-template-columns: 74px 1fr auto; gap: 14px; padding: 18px 0; border-bottom: 1px solid var(--hairline); align-items: center; }
     .cart-item__img { height: 74px; background: var(--parchment); display: grid; place-items: center; border-radius: 8px; }
-    .cart-item__img svg { width: 58px; height: 58px; filter: drop-shadow(2px 3px 8px rgba(0,0,0,.2)); }
+    .cart-item__img .product-media { width: 100%; height: 100%; border-radius: 8px; }
+    .cart-item__img .product-art { width: 58px; height: 58px; filter: drop-shadow(2px 3px 8px rgba(0,0,0,.2)); }
     .cart-item h3 { margin: 0; font-size: 14px; }
     .cart-item p { margin: 2px 0 0; color: var(--muted); font-size: 12px; }
     .remove-item { border: 0; background: transparent; color: var(--blue); font-size: 12px; cursor: pointer; padding: 8px; }
@@ -408,17 +414,7 @@
           <p class="eyebrow" style="color:#a1a1a6">Todo para tu próximo proyecto.</p>
           <h2 class="display">Herramientas que<br>hacen la diferencia.</h2>
           <p class="lead">Compra rápido, recibe hoy y termina el trabajo como lo imaginaste.</p>
-          <svg class="login-product" viewBox="0 0 620 260" role="img" aria-label="Taladro inalámbrico">
-            <path d="M164 53h250c38 0 69 31 69 69v4c0 38-31 69-69 69H164V53Z" fill="#f2a100"/>
-            <path d="M164 83h267c14 0 25 11 25 25v32c0 14-11 25-25 25H164V83Z" fill="#ffb51b"/>
-            <path d="M483 96h53c12 0 22 10 22 22v12c0 12-10 22-22 22h-53V96Z" fill="#8e8e93"/>
-            <path d="M558 108h36c8 0 14 6 14 14v4c0 8-6 14-14 14h-36v-32Z" fill="#d2d2d7"/>
-            <path d="M206 180h122l-11 69H229l-23-69Z" fill="#1d1d1f"/>
-            <path d="M222 176h89l-5 28h-75l-9-28Z" fill="#303034"/>
-            <rect x="211" y="236" width="119" height="20" rx="8" fill="#111113"/>
-            <circle cx="414" cy="124" r="30" fill="#1d1d1f"/><circle cx="414" cy="124" r="18" fill="#4b4b4f"/>
-            <path d="M154 78h26v91h-26c-22 0-40-18-40-40v-11c0-22 18-40 40-40Z" fill="#222225"/>
-          </svg>
+          <img class="login-product" src="https://images.unsplash.com/photo-1572981779307-38b8cabb2407?auto=format&amp;fit=crop&amp;w=1200&amp;q=85" alt="Taladro inalámbrico sobre una mesa de trabajo" loading="eager" decoding="async">
         </div>
         <div class="login-note">Diseñado para profesionales y proyectos de casa.</div>
       </div>
@@ -494,18 +490,7 @@
               </div>
             </div></div>
             <div class="hero__art">
-              <svg viewBox="0 0 660 540" role="img" aria-label="Taladro inalámbrico Ferre Pro">
-                <path d="M90 169h352c59 0 107 48 107 107v7c0 59-48 107-107 107H90V169Z" fill="#f2a100"/>
-                <path d="M90 215h373c23 0 42 19 42 42v50c0 23-19 42-42 42H90V215Z" fill="#ffb51b"/>
-                <path d="M549 237h49c22 0 39 17 39 39v9c0 22-17 39-39 39h-49v-87Z" fill="#8e8e93"/>
-                <path d="M637 255h16v50h-16v-50Z" fill="#d2d2d7"/>
-                <path d="M161 364h185l-17 148H204l-43-148Z" fill="#1d1d1f"/>
-                <path d="M183 357h139l-9 62H200l-17-62Z" fill="#303034"/>
-                <rect x="177" y="483" width="174" height="38" rx="12" fill="#111113"/>
-                <circle cx="442" cy="280" r="45" fill="#1d1d1f"/><circle cx="442" cy="280" r="27" fill="#4b4b4f"/>
-                <path d="M74 207h48v143H74c-36 0-65-29-65-65v-13c0-36 29-65 65-65Z" fill="#222225"/>
-                <path d="M229 246h107" stroke="#fff" stroke-width="10" stroke-linecap="round" opacity=".8"/>
-              </svg>
+              <img src="https://images.unsplash.com/photo-1572981779307-38b8cabb2407?auto=format&amp;fit=crop&amp;w=1400&amp;q=88" alt="Taladro inalámbrico listo para un proyecto" loading="eager" decoding="async">
             </div>
           </div>
           <div class="trust-row"><div class="container trust-row__inner">
@@ -602,7 +587,7 @@
 
   <script>
     const icon = (type) => {
-      const common = 'viewBox="0 0 320 240" role="img" aria-label="Producto" class="product-art"';
+      const common = 'viewBox="0 0 320 240" aria-hidden="true" focusable="false" class="product-art"';
       const art = {
         drill: `<svg ${common}><path d="M47 70h172c32 0 58 26 58 58s-26 58-58 58H47V70Z" fill="#f2a100"/><path d="M47 95h190c10 0 18 8 18 18v31c0 10-8 18-18 18H47V95Z" fill="#ffb51b"/><path d="M277 105h28v48h-28z" fill="#8e8e93"/><path d="M113 167h79l-7 66h-54l-18-66Z" fill="#1d1d1f"/><rect x="119" y="218" width="78" height="16" rx="6" fill="#101012"/><circle cx="218" cy="129" r="23" fill="#303034"/><path d="M38 89h25v75H38c-18 0-33-15-33-33v-9c0-18 15-33 33-33Z" fill="#252527"/></svg>`,
         hammer: `<svg ${common}><path d="m101 204 64-142 30 14-64 142c-5 10-17 15-27 10-10-4-14-15-9-24h6Z" fill="#c17a35"/><path d="M132 44c23-22 72-25 113 0l-17 38-40-18-20 32-48-22 12-30Z" fill="#4b4b4f"/><path d="M219 48h80v36h-71l-9-36Z" fill="#8e8e93"/></svg>`,
@@ -615,18 +600,19 @@
     };
 
     const products = [
-      { id: 1, name: 'Taladro inalámbrico FX20', category: 'Herramientas', price: 89.99, desc: '20 V · 2 velocidades · batería y cargador incluidos', type: 'drill', options: ['Kit completo', 'Solo herramienta'] },
-      { id: 2, name: 'Martillo profesional 16 oz', category: 'Herramientas', price: 18.50, desc: 'Acero forjado · mango de fibra · agarre antideslizante', type: 'hammer', options: ['16 oz', '20 oz'] },
-      { id: 3, name: 'Pintura interior mate', category: 'Materiales', price: 32.75, desc: 'Galón · blanco nítido · bajo olor · alto cubrimiento', type: 'paint', options: ['Blanco', 'Marfil', 'Gris claro'] },
-      { id: 4, name: 'Kit de fijación 120 piezas', category: 'Materiales', price: 12.99, desc: 'Tornillos y anclajes · uso interior · caja reutilizable', type: 'screw', options: ['120 piezas', '240 piezas'] },
-      { id: 5, name: 'Casco de seguridad Pro', category: 'Seguridad', price: 24.00, desc: 'Ajuste de matraca · ventilado · certificado ANSI', type: 'helmet', options: ['Amarillo', 'Blanco', 'Azul'] },
-      { id: 6, name: 'Cinta métrica 8 m', category: 'Herramientas', price: 9.75, desc: 'Cinta ancha · freno automático · carcasa reforzada', type: 'tape', options: ['5 metros', '8 metros'] }
+      { id: 1, name: 'Taladro inalámbrico FX20', category: 'Herramientas', price: 89.99, desc: '20 V · 2 velocidades · batería y cargador incluidos', type: 'drill', image: 'https://images.unsplash.com/photo-1572981779307-38b8cabb2407?auto=format&fit=crop&w=1200&q=85', alt: 'Taladro inalámbrico amarillo y negro', options: ['Kit completo', 'Solo herramienta'] },
+      { id: 2, name: 'Martillo profesional 16 oz', category: 'Herramientas', price: 18.50, desc: 'Acero forjado · mango de fibra · agarre antideslizante', type: 'hammer', image: 'https://images.pexels.com/photos/116740/pexels-photo-116740.jpeg?auto=compress&fit=crop&w=1200', alt: 'Colección de martillos en un taller', options: ['16 oz', '20 oz'] },
+      { id: 3, name: 'Pintura interior mate', category: 'Materiales', price: 32.75, desc: 'Galón · blanco nítido · bajo olor · alto cubrimiento', type: 'paint', image: 'https://images.unsplash.com/photo-1621685682093-3b8016dcb57d?auto=format&fit=crop&w=1200&q=85', alt: 'Brocha dentro de un recipiente de pintura', options: ['Blanco', 'Marfil', 'Gris claro'] },
+      { id: 4, name: 'Kit de fijación 120 piezas', category: 'Materiales', price: 12.99, desc: 'Tornillos y anclajes · uso interior · caja reutilizable', type: 'screw', image: 'https://images.unsplash.com/photo-1597066157837-5084c251fa34?auto=format&fit=crop&w=1200&q=85', alt: 'Conjunto de tornillos y piezas metálicas', options: ['120 piezas', '240 piezas'] },
+      { id: 5, name: 'Casco de seguridad Pro', category: 'Seguridad', price: 24.00, desc: 'Ajuste de matraca · ventilado · certificado ANSI', type: 'helmet', image: 'https://images.unsplash.com/photo-1601273703778-54f00287ae5e?auto=format&fit=crop&w=1200&q=85', alt: 'Trabajador con casco amarillo de seguridad', options: ['Amarillo', 'Blanco', 'Azul'] },
+      { id: 6, name: 'Cinta métrica 8 m', category: 'Herramientas', price: 9.75, desc: 'Cinta ancha · freno automático · carcasa reforzada', type: 'tape', image: 'https://images.unsplash.com/photo-1703756291638-b1774ae3c186?auto=format&fit=crop&w=1200&q=85', alt: 'Cinta métrica sobre fondo claro', options: ['5 metros', '8 metros'] }
     ];
     const categories = ['Todos', 'Herramientas', 'Materiales', 'Seguridad'];
     const state = { route: 'login', category: 'Todos', query: '', sort: 'featured', selected: products[0], qty: 1, option: 0, cart: [] };
     const $ = (s, root = document) => root.querySelector(s);
     const $$ = (s, root = document) => [...root.querySelectorAll(s)];
     const money = n => new Intl.NumberFormat('es-SV', { style: 'currency', currency: 'USD' }).format(n);
+    const productMedia = p => `<span class="product-media" role="img" aria-label="${p.alt}">${icon(p.type)}<img class="product-photo" src="${p.image}" alt="" loading="lazy" decoding="async" onerror="this.remove()"></span>`;
 
     function route(name) {
       state.route = name;
@@ -642,11 +628,11 @@
 
     function renderCategories() {
       const data = [
-        { name: 'Herramientas', note: 'Potencia y precisión para cada tarea.', type: 'drill' },
-        { name: 'Materiales', note: 'La base correcta para un trabajo duradero.', type: 'paint' },
-        { name: 'Seguridad', note: 'Protección que trabaja contigo.', type: 'helmet' }
+        { name: 'Herramientas', note: 'Potencia y precisión para cada tarea.', product: products[0] },
+        { name: 'Materiales', note: 'La base correcta para un trabajo duradero.', product: products[2] },
+        { name: 'Seguridad', note: 'Protección que trabaja contigo.', product: products[4] }
       ];
-      $('#category-grid').innerHTML = data.map(x => `<button class="category-card" data-category="${x.name}"><h3>${x.name}</h3><p>${x.note}</p>${icon(x.type)}<span class="category-card__arrow" aria-hidden="true">→</span></button>`).join('');
+      $('#category-grid').innerHTML = data.map(x => `<button class="category-card" data-category="${x.name}"><h3>${x.name}</h3><p>${x.note}</p>${productMedia(x.product)}<span class="category-card__arrow" aria-hidden="true">→</span></button>`).join('');
     }
 
     function renderChips() {
@@ -667,7 +653,7 @@
       $('#results-count').textContent = `${list.length} ${list.length === 1 ? 'producto' : 'productos'}`;
       $('#product-grid').hidden = !list.length;
       $('#empty-state').hidden = !!list.length;
-      $('#product-grid').innerHTML = list.map(p => `<article class="product-card"><div class="product-card__visual">${icon(p.type)}</div><div class="product-card__body"><p class="product-card__tag">${p.category}</p><h3>${p.name}</h3><p class="product-card__desc">${p.desc}</p><div class="product-card__bottom"><span class="price">${money(p.price)}<small>IVA incluido</small></span><button class="button button-primary button-small" data-product="${p.id}" aria-label="Comprar ${p.name}">Comprar</button></div></div></article>`).join('');
+      $('#product-grid').innerHTML = list.map(p => `<article class="product-card"><div class="product-card__visual">${productMedia(p)}</div><div class="product-card__body"><p class="product-card__tag">${p.category}</p><h3>${p.name}</h3><p class="product-card__desc">${p.desc}</p><div class="product-card__bottom"><span class="price">${money(p.price)}<small>IVA incluido</small></span><button class="button button-primary button-small" data-product="${p.id}" aria-label="Comprar ${p.name}">Comprar</button></div></div></article>`).join('');
     }
 
     function openProduct(id) {
@@ -677,7 +663,7 @@
 
     function renderPurchase() {
       const p = state.selected;
-      $('#purchase-visual').innerHTML = icon(p.type);
+      $('#purchase-visual').innerHTML = productMedia(p);
       $('#purchase-category').textContent = p.category;
       $('#purchase-name').textContent = p.name;
       $('#purchase-description').textContent = p.desc;
@@ -709,7 +695,7 @@
       $('#cart-footer').hidden = !count;
       $('#cart-list').innerHTML = state.cart.map((x,i) => {
         const p = products.find(p => p.id === x.id);
-        return `<div class="cart-item"><div class="cart-item__img">${icon(p.type)}</div><div><h3>${p.name}</h3><p>${p.options[x.option]} · Cant. ${x.qty}</p><p><strong>${money(p.price * x.qty)}</strong></p></div><button class="remove-item" data-remove="${i}" aria-label="Quitar ${p.name}">Quitar</button></div>`;
+        return `<div class="cart-item"><div class="cart-item__img">${productMedia(p)}</div><div><h3>${p.name}</h3><p>${p.options[x.option]} · Cant. ${x.qty}</p><p><strong>${money(p.price * x.qty)}</strong></p></div><button class="remove-item" data-remove="${i}" aria-label="Quitar ${p.name}">Quitar</button></div>`;
       }).join('');
       const total = state.cart.reduce((s,x) => s + products.find(p => p.id === x.id).price * x.qty, 0);
       $('#cart-total').textContent = money(total);
